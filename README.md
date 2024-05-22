@@ -73,7 +73,7 @@ Initializing the control and receive interface for the robotic arm.
 Checking the connection status.
 Moving the robot to the default position using inverse kinematics.
 
-## Installation
+## Installation:
 Install dependencies:
 Ensure you have Python 3.x and pip installed. Then install the dependencies using the following command:
 
@@ -82,14 +82,14 @@ pip install -r requirements.txt
 ## Setup: 
 Ensure all configuration parameters in the config.py file are correctly set for your environment.
 
-## Usage
+## Usage:
 Robot Control: Run UR_control.py to start the main loop and control the robotic arm.
 
-## Dependencies
+## Dependencies:
 Python 3.x
 Libraries: pyusb, ur_rtde
 
-## Notes
+## Notes:
 Ensure the robot's IP address and USB device IDs are correctly set in the config.py file.
 The code includes exception handling for various USB and communication errors.
 The loop in UR_control.py is designed to run continuously, processing data and controlling the robot until interrupted.
