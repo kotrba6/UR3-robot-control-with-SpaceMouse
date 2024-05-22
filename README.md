@@ -78,7 +78,9 @@ Install dependencies:
 Ensure you have Python 3.x and pip installed. Then install the dependencies using the following command:
 
 pip install -r requirements.txt
-Setup: Ensure all configuration parameters in the config.py file are correctly set for your environment.
+
+## Setup: 
+Ensure all configuration parameters in the config.py file are correctly set for your environment.
 
 ## Usage
 Robot Control: Run UR_control.py to start the main loop and control the robotic arm.
