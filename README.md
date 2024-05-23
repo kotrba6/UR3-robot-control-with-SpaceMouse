@@ -29,7 +29,7 @@ Tento projekt se skládá z modulárního programu určeného k inicializaci a o
     ```
 2. Nainstalujte závislosti:
     ```bash
-    pip install -r requirements.txt
+    pip3 install -r requirements.txt
     ```
 
 ## Použití
