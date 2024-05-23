@@ -84,10 +84,4 @@ Příspěvky jsou vítány! Prosím, následujte tyto kroky:
 4. Pushujte do větve (`git push origin feature-branch`).
 5. Otevřete pull request.
 
-## Licence
-Tento projekt je licencován pod licencí MIT - viz soubor [LICENSE](LICENSE) pro detaily.
-
-## Poděkování
-- Děkujeme všem přispěvatelům a open-source komunitě za jejich neocenitelnou podporu.
-- Zvláštní poděkování vývojářům knihoven `usb` a `ur_rtde` použitých v tomto projektu.
 
