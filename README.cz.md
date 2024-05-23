@@ -1,5 +1,5 @@
 # Ovládání robotu UR pomocí SpaceMouse
-
+Czech/[English](README.md)
 ## Obsah
 - [Úvod](#úvod)
 - [Instalace](#instalace)
