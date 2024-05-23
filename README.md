@@ -1,5 +1,5 @@
 # Control of UR Robot Using SpaceMouse
-
+[Czech](README.cz.md)
 ## Contents
 - [Introduction](#introduction)
 - [Installation](#installation)
