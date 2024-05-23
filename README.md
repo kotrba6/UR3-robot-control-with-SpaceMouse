@@ -1,87 +1,83 @@
-# Ovládání robotu UR pomocí SpaceMouse
+# Control of UR Robot Using SpaceMouse
 
-## Obsah
-- [Úvod](#úvod)
-- [Instalace](#instalace)
-- [Použití](#použití)
-- [Funkce](#funkce)
-- [Konfigurace](#konfigurace)
-- [Přispívání](#přispívání)
-- [Licence](#licence)
-- [Poděkování](#poděkování)
+## Contents
+- [Introduction](#introduction)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [Configuration](#configuration)
+- [Contributing](#contributing)
 
-## Úvod
-Tento projekt se skládá z modulárního programu určeného k inicializaci a ovládání USB zařízení a robotického ramene Universal Robot (UR). Program čte data z USB zařízení a zpracovává je pro ovládání pohybů robotického ramene.
+## Introduction
+This project consists of a modular program designed for initializing and controlling a USB device and a Universal Robot (UR) robotic arm. The program reads data from the USB device and processes it to control the movements of the robotic arm.
 
-## Instalace
-### Požadavky
-- Doporučeno spouštět na Linuxu pro snadnou instalaci knihovny `ur_rtde`.
+## Installation
+### Requirements
+- Recommended to run on Linux for easy installation of the `ur_rtde` library.
 - Python 3.x
-- Potřebné Python knihovny:
+- Required Python libraries:
   - `usb`
   - `ur_rtde`
 
-### Kroky
-1. Naklonujte repozitář:
+### Steps
+1. Clone the repository:
     ```bash
     git clone https://github.com/kotrba6/UR3-robot-control-with-SpaceMouse.git
     cd UR3-robot-control-with-SpaceMouse
     ```
-2. Nainstalujte závislosti:
+2. Install dependencies:
     ```bash
     pip3 install -r requirements.txt
     ```
 
-## Použití
-### Spuštění programu
-1. Nastavte parametry v souboru `config.py`:
-   - Zadejte správné Vendor ID a Product ID USB zařízení.
-   - Zadejte správnou IP adresu robotického ramene UR.
-   - Nastavte maximální rychlost pro translaci a rotaci.
-   - Nastavte výchozí polohu robotického ramene UR.
+## Usage
+### Running the Program
+1. Set the parameters in the `config.py` file:
+   - Enter the correct Vendor ID and Product ID of the USB device.
+   - Enter the correct IP address of the UR robotic arm.
+   - Set the maximum speed for translation and rotation.
+   - Set the default position of the UR robotic arm.
 
-2. Spusťte skript `UR_control.py`:
+2. Run the `UR_control.py` script:
     ```bash
     python UR_control.py
     ```
 
-Po spuštění skriptu by mělo být možné ovládat robotické rameno pomocí SpaceMouse.
+After running the script, it should be possible to control the robotic arm using the SpaceMouse.
 
-### Popis skriptů
-- **USB_initialization.py**: Inicializuje USB zařízení pomocí Vendor ID a Product ID, nastaví konfiguraci zařízení a připraví endpoint pro čtení dat.
-- **UR_initialization.py**: Naváže spojení s robotickým ramenem UR a přesune rameno do výchozí polohy.
-- **UR_control.py**: Čte data z USB zařízení, zpracovává je a odpovídajícím způsobem ovládá pohyby robotického ramene UR.
-- **functions.py**: Obsahuje pomocné funkce pro konverzi a zpracování dat.
-- **config.py**: Definuje konfigurační parametry pro USB zařízení a robotické rameno UR.
+### Description of Scripts
+- **USB_initialization.py**: Initializes the USB device using Vendor ID and Product ID, sets up device configuration, and prepares the endpoint for data reading.
+- **UR_initialization.py**: Establishes a connection with the UR robotic arm and moves the arm to the default position.
+- **UR_control.py**: Reads data from the USB device, processes it, and controls the movements of the UR robotic arm accordingly.
+- **functions.py**: Contains helper functions for data conversion and processing.
+- **config.py**: Defines configuration parameters for the USB device and the UR robotic arm.
 
-## Funkce
-- Inicializace a čtení dat z USB zařízení.
-- Inicializace a ovládání robotického ramene UR.
-- Funkce pro zpracování dat pro konverzi a filtrování dat.
-- Konfigurační soubor pro snadné úpravy parametrů.
+## Features
+- Initialization and data reading from the USB device.
+- Initialization and control of the UR robotic arm.
+- Data processing functions for conversion and filtering.
+- Configuration file for easy parameter adjustments.
 
-## Konfigurace
-Soubor `config.py` obsahuje následující konfigurovatelné parametry:
+## Configuration
+The `config.py` file contains the following configurable parameters:
 - **USB_initialization**:
-  - `VENDOR_ID`: Vendor ID USB zařízení.
-  - `PRODUCT_ID`: Product ID USB zařízení.
+  - `VENDOR_ID`: Vendor ID of the USB device.
+  - `PRODUCT_ID`: Product ID of the USB device.
 - **UR_initialization**:
-  - `UR_IP_ADDRESS`: IP adresa robotického ramene UR.
-  - `DEFAULT_POSITION`: Výchozí poloha robotického ramene UR.
+  - `UR_IP_ADDRESS`: IP address of the UR robotic arm.
+  - `DEFAULT_POSITION`: Default position of the UR robotic arm.
 - **UR_control**:
-  - `TRASLATION_COEF`: Koeficient pro výpočet rychlostních vektorů pro translaci.
-  - `ROTATION_COEF`: Koeficient pro výpočet rychlostních vektorů pro rotaci.
-  - `TRANSLATION_MAX_SPEED`: Maximální rychlost pro translaci [m/s].
-  - `ROTATION_MAX_SPEED`: Maximální rychlost pro rotaci [rad/s].
-  - `DEAD_ZONE_SIZE`: Velikost pásmové zádrže.
-  - `MEMOTY_LENGTH`: Délka paměti pro klouzavý průměr.
+  - `TRASLATION_COEF`: Coefficient for calculating translation speed vectors.
+  - `ROTATION_COEF`: Coefficient for calculating rotation speed vectors.
+  - `TRANSLATION_MAX_SPEED`: Maximum speed for translation [m/s].
+  - `ROTATION_MAX_SPEED`: Maximum speed for rotation [rad/s].
+  - `DEAD_ZONE_SIZE`: Size of the dead zone.
+  - `MEMORY_LENGTH`: Length of the moving average memory.
 
-## Přispívání
-Příspěvky jsou vítány! Prosím, následujte tyto kroky:
-1. Vytvořte fork repozitáře.
-2. Vytvořte novou větev (`git checkout -b feature-branch`).
-3. Commitujte své změny (`git commit -m 'Přidání nové funkce'`).
-4. Pushujte do větve (`git push origin feature-branch`).
-5. Otevřete pull request.
-
-
+## Contributing
+Contributions are welcome! Please follow these steps:
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Commit your changes (`git commit -m 'Add new feature'`).
+4. Push to the branch (`git push origin feature-branch`).
+5. Open a pull request.
