@@ -1,95 +1,93 @@
-# UR3-robot-control-with-SpaceMouse
-## Overview
-This project consists of a modular program designed for controlling a Universal Robots robotic arm. The code is structured into several modules, each serving a specific purpose in the overall system. Below is an overview of the functions provided by each module.
+# Ovládání robotu UR pomocí SpaceMouse
 
-### Recommendation: 
-To ensure smooth installation and operation, we recommend running this code on a Linux operating system. Installing the ur_rtde library is significantly easier on Linux systems.
+## Obsah
+- [Úvod](#úvod)
+- [Instalace](#instalace)
+- [Použití](#použití)
+- [Funkce](#funkce)
+- [Konfigurace](#konfigurace)
+- [Přispívání](#přispívání)
+- [Licence](#licence)
+- [Poděkování](#poděkování)
 
-## Modules
-### 1. USB_initialization.py
-This module is responsible for initializing USB devices using their Vendor ID and Product ID.
+## Úvod
+Tento projekt se skládá z modulárního programu určeného k inicializaci a ovládání USB zařízení a robotického ramene Universal Robot (UR). Program čte data z USB zařízení a zpracovává je pro ovládání pohybů robotického ramene.
 
-#### Dependencies:
-usb.core
+## Instalace
+### Požadavky
+- Doporučeno spouštět na Linuxu pro snadnou instalaci knihovny `ur_rtde`.
+- Python 3.x
+- Potřebné Python knihovny:
+  - `usb`
+  - `ur_rtde`
 
-#### Configuration:
-Vendor ID and Product ID are defined in the config.py file.
+### Kroky
+1. Naklonujte repozitář:
+    ```bash
+    git clone https://github.com/kotrba6/UR3-robot-control-with-SpaceMouse.git
+    cd UR3-robot-control-with-SpaceMouse
+    ```
+2. Nainstalujte závislosti:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-#### Key Functions:
-Finding and initializing the USB device.
-Detaching the kernel driver if it is active.
-Setting the configuration and endpoint for data reading.
+## Použití
+### Spuštění programu
+1. Nastavte parametry v souboru `config.py`:
+   - Zadejte správné Vendor ID a Product ID USB zařízení.
+   - Zadejte správnou IP adresu robotického ramene UR.
+   - Nastavte maximální rychlost pro translaci a rotaci.
+   - Nastavte výchozí polohu robotického ramene UR.
 
-### 2. config.py
-This module contains various configuration parameters used throughout the project.
+2. Spusťte skript `UR_control.py`:
+    ```bash
+    python UR_control.py
+    ```
 
-#### USB Initialization:
-VENDOR_ID: Vendor ID of the USB device.
-PRODUCT_ID: Product ID of the USB device.
+Po spuštění skriptu by mělo být možné ovládat robotické rameno pomocí SpaceMouse.
 
-#### UR Initialization:
-UR_IP_ADDRESS: IP address of the Universal Robots robotic arm.
-DEFAULT_POSITION: Default position for the robotic arm.
+### Popis skriptů
+- **USB_initialization.py**: Inicializuje USB zařízení pomocí Vendor ID a Product ID, nastaví konfiguraci zařízení a připraví endpoint pro čtení dat.
+- **UR_initialization.py**: Naváže spojení s robotickým ramenem UR a přesune rameno do výchozí polohy.
+- **UR_control.py**: Čte data z USB zařízení, zpracovává je a odpovídajícím způsobem ovládá pohyby robotického ramene UR.
+- **functions.py**: Obsahuje pomocné funkce pro konverzi a zpracování dat.
+- **config.py**: Definuje konfigurační parametry pro USB zařízení a robotické rameno UR.
 
-#### UR Control:
-Coefficients and maximum speeds for translation and rotation.
-Dead zone size and filter memory length.
-EMA_COEF: Coefficient for Exponential Moving Average.
-FIR_FILTER_COEFS: Coefficients for the FIR filter.
+## Funkce
+- Inicializace a čtení dat z USB zařízení.
+- Inicializace a ovládání robotického ramene UR.
+- Funkce pro zpracování dat pro konverzi a filtrování dat.
+- Konfigurační soubor pro snadné úpravy parametrů.
 
-### 3. functions.py
-This module contains various helper functions for data processing and control.
+## Konfigurace
+Soubor `config.py` obsahuje následující konfigurovatelné parametry:
+- **USB_initialization**:
+  - `VENDOR_ID`: Vendor ID USB zařízení.
+  - `PRODUCT_ID`: Product ID USB zařízení.
+- **UR_initialization**:
+  - `UR_IP_ADDRESS`: IP adresa robotického ramene UR.
+  - `DEFAULT_POSITION`: Výchozí poloha robotického ramene UR.
+- **UR_control**:
+  - `TRASLATION_COEF`: Koeficient pro výpočet rychlostních vektorů pro translaci.
+  - `ROTATION_COEF`: Koeficient pro výpočet rychlostních vektorů pro rotaci.
+  - `TRANSLATION_MAX_SPEED`: Maximální rychlost pro translaci [m/s].
+  - `ROTATION_MAX_SPEED`: Maximální rychlost pro rotaci [rad/s].
+  - `DEAD_ZONE_SIZE`: Velikost pásmové zádrže.
+  - `MEMOTY_LENGTH`: Délka paměti pro klouzavý průměr.
 
-#### Key Functions:
-bytes_to_int: Convert bytes to an integer.
-apply_fir_filter: Apply FIR filter to a vector.
-apply_ema_filter: Apply EMA filter to a value.
-dead_zone_filter: Apply dead zone filter to a vector.
-moving_average: Calculate the moving average of a vector.
-convert_to_speed_vector: Convert vectors to speed vectors for translation and rotation.
-collect_data_tool and collect_data_joint: Collect data on tool position and joints and write them to CSV files.
+## Přispívání
+Příspěvky jsou vítány! Prosím, následujte tyto kroky:
+1. Vytvořte fork repozitáře.
+2. Vytvořte novou větev (`git checkout -b feature-branch`).
+3. Commitujte své změny (`git commit -m 'Přidání nové funkce'`).
+4. Pushujte do větve (`git push origin feature-branch`).
+5. Otevřete pull request.
 
-### 4. UR_control.py
-This module provides the main loop for reading data from the USB device and controlling the robotic arm as needed.
+## Licence
+Tento projekt je licencován pod licencí MIT - viz soubor [LICENSE](LICENSE) pro detaily.
 
-#### Dependencies:
-usb.core, functions.py
+## Poděkování
+- Děkujeme všem přispěvatelům a open-source komunitě za jejich neocenitelnou podporu.
+- Zvláštní poděkování vývojářům knihoven `usb` a `ur_rtde` použitých v tomto projektu.
 
-#### Key Functions:
-Initializing the USB device.
-Processing data from the USB device.
-Applying various filters to the data.
-Sending control commands to the robotic arm based on processed data.
-Collecting data on tool and joint positions.
-
-### 5. UR_initialization.py
-This module initializes the connection to the Universal Robots robotic arm and sets it to the default position.
-
-#### Dependencies: 
-rtde_control, rtde_receive
-
-#### Key Functions:
-Initializing the control and receive interface for the robotic arm.
-Checking the connection status.
-Moving the robot to the default position using inverse kinematics.
-
-## Installation:
-Install dependencies:
-Ensure you have Python 3.x and pip installed. Then install the dependencies using the following command:
-
-pip install -r requirements.txt
-
-## Setup: 
-Ensure all configuration parameters in the config.py file are correctly set for your environment.
-
-## Usage:
-Robot Control: Run UR_control.py to start the main loop and control the robotic arm.
-
-## Dependencies:
-Python 3.x
-Libraries: pyusb, ur_rtde
-
-## Notes:
-Ensure the robot's IP address and USB device IDs are correctly set in the config.py file.
-The code includes exception handling for various USB and communication errors.
-The loop in UR_control.py is designed to run continuously, processing data and controlling the robot until interrupted.
